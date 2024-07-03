@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
-#df = pd.read_csv('./titanic/train.csv', index_col=False)
-df = pd.read_csv('./titanic/new_train.csv', index_col=False)
+df = pd.read_csv('./titanic/train.csv', index_col=False)
+#df = pd.read_csv('./titanic/new_train.csv', index_col=False)
 
 cols = df.columns
 rows = list(df.iterrows())
