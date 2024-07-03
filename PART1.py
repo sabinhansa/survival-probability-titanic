@@ -8,7 +8,7 @@ df = pd.read_csv('./titanic/train.csv', index_col=False)
 
 cols = df.columns
 rows = list(df.iterrows())
-print("Cerinta 1")
+
 print(f"Numar de coloane: {len(cols)}")
 print(f"Numar de elemnte lipsa: {sum(df.isnull().sum())}")
 print(f"Numar de linii: {len(rows)}")
@@ -22,8 +22,7 @@ if ok:
 else:
     print("Nu exista linii duplicate")
 
-print("\nCerinta 2")
-print(f"Procentajul de oameni care au supravietuit: {(df['Survived'].sum() / len(rows) * 100).round(2)}%")
+print(f"\nProcentajul de oameni care au supravietuit: {(df['Survived'].sum() / len(rows) * 100).round(2)}%")
 print(f"Procentajul de oameni care nu au supravietuit: {(100 - df['Survived'].sum() / len(rows) * 100).round(2)}%")
 class_dict = {}
 for entry in df['Pclass']:
@@ -38,7 +37,6 @@ female_count = [1 for x in df['Sex'] if x == 'female']
 print(f"Barbati: {sum(male_count)}")
 print(f"Femei: {sum(female_count)}")
 
-# print("\nCerinta 3")
 labels = 'Male', "Female"
 sizes = [sum(male_count), sum(female_count)]
 
@@ -76,7 +74,6 @@ plt.xlabel('Pret')
 
 plt.savefig('histo2.svg')
 
-print("\nCerinta 4")
 for col in list(cols):
     if df[col].isnull().sum() != 0:
         survived = 0
@@ -87,11 +84,10 @@ for col in list(cols):
                     survived += 1
                 else:
                     dead += 1
-        print(f"Valori lipsa pentru coloana {col}: {df[col].isnull().sum()}/{len(rows)} -> "
+        print(f"\nValori lipsa pentru coloana {col}: {df[col].isnull().sum()}/{len(rows)} -> "
               f"{round(df[col].isnull().sum() / len(rows) * 100, 2)}%. "
               f"Supravietuitori: {survived}. Decedati: {dead}")
 
-# print("\nCerinta 5")
 age_dict = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
 age_list = []
 for entry in df['Age']:
@@ -135,7 +131,6 @@ plt.savefig('ages.svg')
 
 df.insert(2, 'Age Bracket', age_list, True)
 
-# print("\nCerinta 6")
 labels = '0-20', '21-40', '41-60', '61-max', 'None'
 sizes = [0 for _ in range(5)]
 for entry in df['Age Bracket']:
@@ -144,7 +139,6 @@ fig7, ax = plt.subplots()
 ax.pie(sizes, labels=labels)
 plt.savefig('surv_by_age.svg')
 
-# print("\nCerinta7")
 children_survived = 0
 children_count = 0
 adult_survived = 0
@@ -177,7 +171,6 @@ ax.set_title('Numarul de supravietuitori in functie de maturitate')
 ax.legend()
 plt.savefig('surv_by_maturity.svg')
 
-# print("\nCerinta 8")
 mean_age = df['Age'].mean()
 df.fillna({'Age': mean_age}, inplace=True)
 cabin_freq = df['Cabin'].value_counts().index.to_list()
@@ -204,7 +197,6 @@ fig9, ax = plt.subplots()
 ax.barh(tuple(labels), tuple(sizes))
 plt.savefig('titles.svg')
 
-# print("\nCerinta 10")
 s0s = 0
 s0d = 0
 s1s = 0
